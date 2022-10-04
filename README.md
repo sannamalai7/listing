@@ -1,5 +1,4 @@
 # Listing
-Updated
 This project is used for news listing. More details about this project available in worklog.txt Most recent code is uploaded into github today and consider as Version 1. Future changes will be uploaded into github frequently with, task worked on this project.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
