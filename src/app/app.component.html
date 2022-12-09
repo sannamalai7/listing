@@ -39,7 +39,7 @@
 
                             <date #date [ngClass]="{'hide': searchIn == 'all_experts'}"  [apiLanguage]="apiLanguage" [startDateParameters]="startDateParameters" [endDateParameters]="endDateParameters" [i18n]="i18n" (selectedDateRange)="mobileFacets.onSeletedDates($event.startDate, $event.endDate)" (outParameters)="updateParameter($event)"></date>         
 
-                            <facets #facet [facetParameters]="facetParameters" [facetsIn]="facets" [i18n]="i18n" [apiLanguage]="apiLanguage" (selectedFacets)="mobileFacets.getSelectedFacets($event)" (outParameters)="updateParameter($event)"></facets>
+                            <facets #facet [facetType]="facetType" [facetParameters]="facetParameters" [facetsIn]="facets" [i18n]="i18n" [apiLanguage]="apiLanguage" (selectedFacets)="mobileFacets.getSelectedFacets($event)" (outParameters)="updateParameter($event)"></facets>
                         </div>    
                     </div>
                 </div>

@@ -90,6 +90,7 @@ export class AppComponent {
     pagedItems: any[];
 	locale: string;
 	showingDetails: string;
+	facetType: string;
 	
 	constructor(private element: ElementRef, private ref: ChangeDetectorRef, private pagerService: PagerService) {	
 		//console.log('on load ' + new Date);			
@@ -145,6 +146,7 @@ export class AppComponent {
         this.imagePath = this.element.nativeElement.getAttribute('imagePath');
         this.inputUrl = this.element.nativeElement.getAttribute('url');
 		this.localeUrl =this.element.nativeElement.getAttribute('i18nurl');
+		this.facetType =this.element.nativeElement.getAttribute('facetType') ? this.element.nativeElement.getAttribute('facetType'):'checkbox';
         this.title = this.element.nativeElement.getAttribute('pageTitle');        
         this.locales = JSON.parse(this.element.nativeElement.getAttribute('locale'));
 		this.searchIn = this.element.nativeElement.getAttribute('searchIn');            
@@ -161,9 +163,13 @@ export class AppComponent {
 	        this.allFacets = this.getParameterByName('fct', this.inputUrl);
 	        if (this.allFacets != null) {
 	        	let allFacetsSplit = this.allFacets.split(',');
-	        	for(let i=0; i < allFacetsSplit.length; i++) {	        		
-	        		if (this.getParameterByName(allFacetsSplit[i], this.inputUrl) != null) {
+	        	for(let i=0; i < allFacetsSplit.length; i++) {	
+					//updated on 9/12/2022        		
+	        		/* if (this.getParameterByName(allFacetsSplit[i], this.inputUrl) != null) {
 	        			this.selectedFacets[allFacetsSplit[i]] = this.getParameterByName(allFacetsSplit[i], this.inputUrl);	
+	        		} */
+					if (this.getParameterByName(allFacetsSplit[i], document.location.search) != null) {
+	        			this.selectedFacets[allFacetsSplit[i]] = this.getParameterByName(allFacetsSplit[i], document.location.search);	
 	        		}
 	        	}
 	        }
@@ -175,9 +181,20 @@ export class AppComponent {
 				this.facetParameters=[];
 				// API language Update
 				let queryArr = [];
-				for (const key in this.facetParameters) {
+				//updated on 9/12/2022
+				/* for (const key in this.facetParameters) {
 					if (this.facetParameters.hasOwnProperty(key)) {  
 						let value = this.facetParameters[key]; 
+						if (key == "qterm") {
+							this.qterm = value; 
+						}
+							queryArr.push(key + "=" + value);
+						//} 
+					}            
+				} */
+				for (const key in this.selectedFacets) {
+					if (this.selectedFacets.hasOwnProperty(key) && key!='lang_exact') {  
+						let value = this.selectedFacets[key]; 
 						if (key == "qterm") {
 							this.qterm = value; 
 						}
@@ -443,7 +460,25 @@ export class AppComponent {
 		this.onLoad = true;		
 		this.loading = true;
 		this.qterm="";
+		this.page = 1;
+		//debugger
+		
+		if(parameter=='pastevents=on') {
+			parameter = {
+				'pastevents':['on']
+			}
+			this.url = this.removeURLParameter(this.url, 'futureevents');
+			delete this.facetParameters['futureevents'];
+		}
 
+		if(parameter=='futureevents=on') {
+			parameter = {
+				'futureevents':['on']
+			}
+			this.url = this.removeURLParameter(this.url, 'pastevents');
+			delete this.facetParameters['pastevents'];
+		}
+		
 		let queryArr = [];
         for (const key in parameter) {
             if (parameter.hasOwnProperty(key)) {
@@ -459,7 +494,6 @@ export class AppComponent {
                 if(key=="strdate"&&parameter["strdate"]=="" || key=="enddate"&&parameter["enddate"]==""){
                 //
                 }else{
-					//console.log(parameter[key], key, 'pq')
 					if(key!="qterm"){
 						this.facetParameters[key]=parameter[key].join("^");							
 					}
@@ -612,6 +646,7 @@ export class AppComponent {
 		this.getShowingDetails(this.page, this.total, this.qterm); 
 		this.pagination(this.page, this.total);		
 		this.ref.detectChanges();
+		this.loading = false;
 	}	
 
 	public updateIsCollapsed(collapse: any) {			
@@ -687,6 +722,7 @@ export class AppComponent {
 		this.queryParameter = 'qterm='
 		this.startDateParameters = 'strdate=';
 		this.endDateParameters = 'enddate=';
+		this.page = 1;
 		
 		let apilang = this.getParameterByName('apilang', this.inputUrl);		
 		let lang_exact = this.getParameterByName('lang_exact', this.inputUrl);
@@ -760,7 +796,8 @@ export class AppComponent {
 	}
 
 	//Pagination
-	public setPage(page: number, el: HTMLElement) {  
+	public setPage(page: number, el: HTMLElement) { 
+		this.loading = true; 
 		this.page = page;          	
         this.url = this.removeURLParameter(this.url, 'os') + '&os=' + (page - 1) * this.rows;
         if (page < 1 || page > this.pager.totalPages) {

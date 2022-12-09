@@ -23,6 +23,7 @@ export class FacetsComponent {
 	@Input() facetsIn: Object;
 	@Input() i18n: any;	
 	@Input() apiLanguage: string;
+	@Input() facetType: string;
 	@Output() selectedFacets = new EventEmitter<any>();
 	@Output() outParameters = new EventEmitter<any>();
 

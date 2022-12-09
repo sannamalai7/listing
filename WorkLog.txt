@@ -13,14 +13,24 @@ Manasi Mail: RE: Search in "all news" - filter "by date"
 1/11/2022:
 Akash chat: Implemet pagination on desktop view auto load api at bottom of page reaches on mobile view
 4/11/2022: File uploading these changes into github
+8/11/2022: new chages done but not uploaded into github
 
-Author URL: https://aemauthorstg65.worldbank.org/content/wb-home/en/news/news-landing/all.html
+9/12/2022:
+facet types as radio and checkbox
+
+News:
+Author URL: https://aemauthorstg65.worldbank.org/content/wb-home/en/news/news-landing/all.html?wcmmode=disabled
 File Path: https://aemauthorstg65.worldbank.org/crx/de/index.jsp#/etc/designs/wbrrdesign/custom_search_clientlibs/js.txt
+jsp path: https://aemauthorstg65.worldbank.org/crx/de/index.jsp#/apps/wbrnews/components/content/custom_search/custom_search.jsp
 
 https://wwwstg.worldbank.org/wbg/aem/service/i18nservice.html?apilang=en&keys=Today,Past7Days,PastMonth,PastYear,RefineBy,TimeFrame,SpecificDateRange,StartDate,EndDate,SeeMore,SeeLess,SortBy,ShowingResults,Date,addtocalendar,Upcoming,Past,BestMatch,job_title,alphabetical,NoResultsMsgFuture,NoResultsMsgPast,displayconttype_exact,topic_exact,lang_exact,count_exact,countcode_exact,admreg_exact
 
 https://aemauthorstg65.worldbank.org/wbg/aem/service/i18nservice.html?apilang=en&keys=Today,Past7Days,PastMonth,PastYear,RefineBy,TimeFrame,SpecificDateRange,StartDate,EndDate,SeeMore,SeeLess,SortBy,ShowingResults,Date,addtocalendar,Upcoming,Past,BestMatch,job_title,alphabetical,NoResultsMsgFuture,NoResultsMsgPast,displayconttype_exact,topic_exact,lang_exact,count_exact,countcode_exact,admreg_exact
 https://aemauthorstg65.worldbank.org/wbg/aem/service/i18nservice.html?&keys=Today,Past7Days,PastMonth,PastYear,RefineBy,TimeFrame,SpecificDateRange,StartDate,EndDate,SeeMore,SeeLess,SortBy,ShowingResults,Date,addtocalendar,Upcoming,Past,BestMatch,job_title,alphabetical,NoResultsMsgFuture,NoResultsMsgPast,displayconttype_exact,topic_exact,lang_exact,count_exact,countcode_exact,admreg_exact
+	
+Events: 
+https://wwwstg.worldbank.org/en/events/all
+https://aemauthorstg65.worldbank.org/content/wb-home/en/news/events/events-landing/all.html?wcmmode=disabled
 
 Installation:
 npm cache clear --force
@@ -29,3 +39,7 @@ disable global protect
 npm install --legacy-peer-deps
 
 After installation it shows error in ember-cli -> just comment error line and it will work
+
+https://searchqa.worldbank.org/api/v2/events?fct=displayconttype_exact,lang_exact&format=json&rows=20&src=cq55&apilang=en&lang_exact=English&strdate=10-09-2017&enddate=10-16-2017&pastevents=on&srt=eventstartdate&order=desc
+https://searchqa.worldbank.org/api/v2/events?fct=displayconttype_exact,lang_exact&format=json&rows=20&src=cq55&&os=0&futureevents=on
+
