@@ -18,6 +18,12 @@ Akash chat: Implemet pagination on desktop view auto load api at bottom of page 
 9/12/2022:
 facet types as radio and checkbox
 
+31/1/2023:
+adding timeformat in add to calendar
+
+6/2/2023:
+updating timeformat in add to calendar
+
 News:
 Author URL: https://aemauthorstg65.worldbank.org/content/wb-home/en/news/news-landing/all.html?wcmmode=disabled
 File Path: https://aemauthorstg65.worldbank.org/crx/de/index.jsp#/etc/designs/wbrrdesign/custom_search_clientlibs/js.txt
