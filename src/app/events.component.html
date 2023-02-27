@@ -60,7 +60,7 @@
                 <div class="search-listing-content">
                   <div class="hammer">
                     <span>{{
-                      docs.key | dateFormat : localeAndDateFormat
+                      docs.key.split("$")[0] | dateFormat : localeAndDateFormat
                     }}</span>
                   </div>
                   <div *ngFor="let document of docs.value" class="mrg-b-16">
@@ -70,7 +70,7 @@
                         data-customlink="sr:body content"
                         [attr.href]="document.url"
                         *ngFor="let title of document.title | keys"
-                        >{{ title.value }}</a
+                        >{{ changeText(title.value) }}</a
                       >
                     </h4>
                     <p
@@ -89,12 +89,16 @@
                               : localeAndDateFormat
                         }}
                       </span>
+                      <span class="info-list-item">
+                        <span class="info-list-title">Type:</span>
+                        {{ document.conttype }}
+                      </span>
                     </div>
                     <div
                       class="search-listing-button"
                       *ngIf="futureOrPast == 'futureevents'"
                     >
-                      <button
+                      <!-- <button
                         class="btn-default btn-lg _loop_btn_secondary"
                         data-customlink="nl:event card"
                         data-text="add to calendar"
@@ -104,12 +108,61 @@
                             document.eventstartdate,
                             document.eventenddate,
                             document.descr,
-                            document.url
+                            document.url,
+                            ''
                           )
                         "
                       >
                         {{ addToCalendar | locale : i18n }}
-                      </button>
+                      </button> -->
+
+                      <!-- dropdown start -->
+                      <div class="all__sortby">
+                        <div class="all__listing_section_top">
+                          <div class="lp__dropdown">
+                            <div class="lp__dropdown_group">
+                              <button
+                                class="lp__dropdown_toggle"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                <span class="filter-option">Best Match</span>
+                              </button>
+                              <ul
+                                class="dropdown-menu lp__dropdown_menu"
+                                aria-labelledby="sr_listnav_dropdown"
+                                style=""
+                              >
+                                <li>
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    aria-disabled="true"
+                                    >Document Date</a
+                                  >
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#"
+                                    >Document Name</a
+                                  >
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#"
+                                    >Report No.</a
+                                  >
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#"
+                                    >Document Type</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- dropdown end -->
                     </div>
                   </div>
                 </div>

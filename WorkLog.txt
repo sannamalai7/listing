@@ -24,9 +24,12 @@ adding timeformat in add to calendar
 6/2/2023:
 updating timeformat in add to calendar
 
+24/2/2023:
+adding google, yahoo and ics to add to calendar
+
 News:
 Author URL: https://aemauthorstg65.worldbank.org/content/wb-home/en/news/news-landing/all.html?wcmmode=disabled
-File Path: https://aemauthorstg65.worldbank.org/crx/de/index.jsp#/etc/designs/wbrrdesign/custom_search_clientlibs/js.txt
+File Path: https://aemauthorstg65.worldbank.org/crx/de/index.jsp#/etc/designs/wbrrdesign/custom_search_clientlibs/js/main.js
 jsp path: https://aemauthorstg65.worldbank.org/crx/de/index.jsp#/apps/wbrnews/components/content/custom_search/custom_search.jsp
 
 https://wwwstg.worldbank.org/wbg/aem/service/i18nservice.html?apilang=en&keys=Today,Past7Days,PastMonth,PastYear,RefineBy,TimeFrame,SpecificDateRange,StartDate,EndDate,SeeMore,SeeLess,SortBy,ShowingResults,Date,addtocalendar,Upcoming,Past,BestMatch,job_title,alphabetical,NoResultsMsgFuture,NoResultsMsgPast,displayconttype_exact,topic_exact,lang_exact,count_exact,countcode_exact,admreg_exact
@@ -48,4 +51,7 @@ After installation it shows error in ember-cli -> just comment error line and it
 
 https://searchqa.worldbank.org/api/v2/events?fct=displayconttype_exact,lang_exact&format=json&rows=20&src=cq55&apilang=en&lang_exact=English&strdate=10-09-2017&enddate=10-16-2017&pastevents=on&srt=eventstartdate&order=desc
 https://searchqa.worldbank.org/api/v2/events?fct=displayconttype_exact,lang_exact&format=json&rows=20&src=cq55&&os=0&futureevents=on
+
+dates=20230216T080000Z/20230216T100000Z
+dates=20230216T200000Z/20230216T220000Z
 

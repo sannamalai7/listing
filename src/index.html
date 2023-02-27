@@ -9,15 +9,31 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css"
       rel="stylesheet"
     />
-    <!--<script src="//assets.adobedtm.com/572ee9d70241b5c796ae15c773eaaee4365408ec/satelliteLib-858624ed9b5da800ebf8128fe3cf358874235ca9.js"></script>-->
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <!-- <customsearch imagePath="./ajax.gif" pageTitle="All News" 
-	i18nurl="https://wwwstg.worldbank.org/wbg/aem/service/i18nservice.html?"
-	facetType="checkbox"
-	searchIn="news" locale='{"Albanian":"sq","Arabic":"ar","Armenian":"hy","Bulgarian":"bg","Cambodian":"km","Catalan":"ca","Chinese":"zh","Croatian":"hr","Dari":"prs","English":"en","French":"fr","German":"de","Hindi":"hi","Indonesian":"id","Japanese":"ja","Khmer":"km","Korean":"ko","Kyrgyz":"ky","Lao":"lo","Laotian":"lo","Macedonian":"mk","Mongolian":"mn","Pashto":"ps","Polish":"pl","Portuguese":"pt","Romanian":"ro","Russian":"ru","Serbian":"sr","Serbo-Croatian":"sh","Sinhala":"si","Spanish":"es","Tajik":"tg","Tamil":"ta","Thai":"th","Turkish":"tr","Ukrainian":"uk","Vietnamese":"vi"}' 
-	url="https://search.worldbank.org/api/v2/news?format=json&rows=20&fct=displayconttype_exact,topic_exact,lang_exact,count_exact,countcode_exact,admreg_exact&src=cq55&apilang=en&lang_exact=English" search-box-text="qqq">Loading...</customsearch>
- -->
+    <customsearch
+      imagePath="./ajax.gif"
+      pageTitle="All News"
+      i18nurl="https://wwwstg.worldbank.org/wbg/aem/service/i18nservice.html?"
+      facetType="checkbox"
+      searchIn="news"
+      locale='{"Albanian":"sq","Arabic":"ar","Armenian":"hy","Bulgarian":"bg","Cambodian":"km","Catalan":"ca","Chinese":"zh","Croatian":"hr","Dari":"prs","English":"en","French":"fr","German":"de","Hindi":"hi","Indonesian":"id","Japanese":"ja","Khmer":"km","Korean":"ko","Kyrgyz":"ky","Lao":"lo","Laotian":"lo","Macedonian":"mk","Mongolian":"mn","Pashto":"ps","Polish":"pl","Portuguese":"pt","Romanian":"ro","Russian":"ru","Serbian":"sr","Serbo-Croatian":"sh","Sinhala":"si","Spanish":"es","Tajik":"tg","Tamil":"ta","Thai":"th","Turkish":"tr","Ukrainian":"uk","Vietnamese":"vi"}'
+      url="https://searchqa.worldbank.org/api/v2/news?format=json&rows=20&fct=displayconttype_exact,topic_exact,lang_exact,count_exact,countcode_exact,admreg_exact&src=cq55&apilang=en&lang_exact=English"
+      search-box-text="qqq"
+      liveEvents="false"
+      >Loading...</customsearch
+    >
+
     <!-- <customsearch imagePath="./ajax.gif" pageTitle="All Multimedia" 
 	i18nurl="https://wwwstg.worldbank.org/wbg/aem/service/i18nservice.html?"
 	searchIn="multimedia" locale='{"Albanian":"sq","Arabic":"ar","Armenian":"hy","Bulgarian":"bg","Cambodian":"km","Catalan":"ca","Chinese":"zh","Croatian":"hr","Dari":"prs","English":"en","French":"fr","German":"de","Hindi":"hi","Indonesian":"id","Japanese":"ja","Khmer":"km","Korean":"ko","Kyrgyz":"ky","Lao":"lo","Laotian":"lo","Macedonian":"mk","Mongolian":"mn","Pashto":"ps","Polish":"pl","Portuguese":"pt","Romanian":"ro","Russian":"ru","Serbian":"sr","Serbo-Croatian":"sh","Sinhala":"si","Spanish":"es","Tajik":"tg","Tamil":"ta","Thai":"th","Turkish":"tr","Ukrainian":"uk","Vietnamese":"vi"}' 
@@ -28,7 +44,7 @@
 	searchIn="all_experts" locale='{"Albanian":"sq","Arabic":"ar","Armenian":"hy","Bulgarian":"bg","Cambodian":"km","Catalan":"ca","Chinese":"zh","Croatian":"hr","Dari":"prs","English":"en","French":"fr","German":"de","Hindi":"hi","Indonesian":"id","Japanese":"ja","Khmer":"km","Korean":"ko","Kyrgyz":"ky","Lao":"lo","Laotian":"lo","Macedonian":"mk","Mongolian":"mn","Pashto":"ps","Polish":"pl","Portuguese":"pt","Romanian":"ro","Russian":"ru","Serbian":"sr","Serbo-Croatian":"sh","Sinhala":"si","Spanish":"es","Tajik":"tg","Tamil":"ta","Thai":"th","Turkish":"tr","Ukrainian":"uk","Vietnamese":"vi"}' 
 	url="https://searchqa.worldbank.org/api/v2/people?format=json&fct=surname_AlphaBucket,first_name_AlphaBucket,unit_exact,topic_exact,admreg_exact,count_exact,subtopic_exact,job_title_exact,lang_spoken_exact,lang_exact&rows=20&apilang=en&lang_exact=English&srt=surname&order=asc" search-box-text="qqq">Loading...</customsearch>
  -->
-    <customsearch
+    <!-- <customsearch
       imagePath="./ajax.gif"
       pageTitle="All Events"
       i18nurl="https://wwwstg.worldbank.org/wbg/aem/service/i18nservice.html?"
@@ -36,7 +52,9 @@
       locale='{"Albanian":"sq","Arabic":"ar","Armenian":"hy","Bulgarian":"bg","Cambodian":"km","Catalan":"ca","Chinese":"zh","Croatian":"hr","Dari":"prs","English":"en","French":"fr","German":"de","Hindi":"hi","Indonesian":"id","Japanese":"ja","Khmer":"km","Korean":"ko","Kyrgyz":"ky","Lao":"lo","Laotian":"lo","Macedonian":"mk","Mongolian":"mn","Pashto":"ps","Polish":"pl","Portuguese":"pt","Romanian":"ro","Russian":"ru","Serbian":"sr","Serbo-Croatian":"sh","Sinhala":"si","Spanish":"es","Tajik":"tg","Tamil":"ta","Thai":"th","Turkish":"tr","Ukrainian":"uk","Vietnamese":"vi"}'
       url="//searchqa.worldbank.org/api/v2/events?fct=displayconttype_exact,lang_exact&format=json&rows=20&src=cq55&apilang=en&lang_exact=English"
       search-box-text="qqq"
+      liveEvents="true"
+      facetType="checkbox"
       >Loading...</customsearch
-    >
+    > -->
   </body>
 </html>
