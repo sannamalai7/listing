@@ -65,6 +65,8 @@
                   [searchIn]="searchIn"
                   [apiLanguage]="apiLanguage"
                   (isCollapsedOut)="updateIsCollapsed($event)"
+                  (selectedTimeframe)="timeframe.onSelectTimeFrame($event)"
+                  (deselectedTimeframe)="timeframe.onDeselectTimeFrame()"
                   (selectedDateRange)="
                     date.onSelectedDate($event.startDate, $event.endDate)
                   "

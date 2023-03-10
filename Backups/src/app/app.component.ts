@@ -1072,7 +1072,7 @@ export class AppComponent {
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
-    //el.scrollIntoView({ behavior: "smooth" });
+    el.scrollIntoView({ behavior: "smooth" });
   }
 
   public pagination(page: any, total: any) {
