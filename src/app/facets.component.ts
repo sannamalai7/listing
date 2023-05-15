@@ -49,6 +49,7 @@ export class FacetsComponent {
 
     if (this.facetsIn !== undefined) {
       this.facets = this.facetsIn;
+      // console.log(this.facets);
 
       this.facets.forEach((facet: any) => {
         if (this.facetParameters.hasOwnProperty(facet.facetName)) {
@@ -102,6 +103,8 @@ export class FacetsComponent {
     // }
 
     //	this.selectedFacets.emit(this.selectedFacetItems);
+    //console.log("facetParameters", this.facetParameters);
+
     this.locale = this.apiLanguage.split("=")[1];
     this.placeholder = this.locale == "en" ? "Search" : "";
   }
@@ -133,8 +136,8 @@ export class FacetsComponent {
 
     if (this.selectedFacetItems.hasOwnProperty(facet)) {
       let facetItems = this.selectedFacetItems[facet];
-      console.log("facetItems", facetItems);
-      console.log("itemName", encodeURIComponent(itemName));
+      /* console.log("facetItems", facetItems);
+      console.log("itemName", encodeURIComponent(itemName)); */
 
       //let index = facetItems.indexOf(encodeURIComponent(itemName));
       let index = facetItems.indexOf(itemName);
@@ -159,6 +162,8 @@ export class FacetsComponent {
     // 		this.outParameters.emit(modifiedUrl + '&' + facet.trim() + '=' + itemName.split(' ').join('+'));
     // 	}
     // }
+    //console.log("selectedFacetItems", this.selectedFacetItems);
+
     this.outParameters.emit(this.selectedFacetItems);
   }
 

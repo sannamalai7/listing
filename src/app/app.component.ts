@@ -240,21 +240,35 @@ export class AppComponent {
         }
       }
       this.rows = Number(this.getParameterByName("rows", this.inputUrl));
-      this.languageExact =
+      // check lang in url param
+      if (this.getParameterByName("lang_exact", document.location.search)) {
+        this.languageExact =
+          "lang_exact=" +
+          this.getParameterByName("lang_exact", document.location.search);
+      } // if not in url then check in API from index.html
+      else if (this.getParameterByName("lang_exact", this.inputUrl)) {
+        this.languageExact =
+          "lang_exact=" + this.getParameterByName("lang_exact", this.inputUrl);
+      }
+      /* this.languageExact =
         this.getParameterByName("lang_exact", this.inputUrl) == null
           ? "lang_exact=English"
           : "lang_exact=" +
-            this.getParameterByName("lang_exact", this.inputUrl);
-      this.apiLanguage =
+            this.getParameterByName("lang_exact", this.inputUrl); */
+      /* this.apiLanguage =
         this.getParameterByName("apilang", this.inputUrl) == null
           ? "apilang=en"
-          : "apilang=" + this.getParameterByName("apilang", this.inputUrl);
+          : "apilang=" + this.getParameterByName("apilang", this.inputUrl); */
       this.isResults = this.getParameterByName("isresult", this.inputUrl)
         ? true
         : false;
-      this.languageVal = Object.keys(this.locales).find(
-        (key) => this.locales[key] === this.apiLanguage.split("=")[1]
-      );
+
+      /* this.languageVal = Object.keys(this.locales).find(
+        (key) => this.locales[key] === this.languageExact.split("=")[1]
+      ); */
+      this.languageVal = this.locales[this.languageExact.split("=")[1]];
+      this.apiLanguage = "apilang=" + this.languageVal;
+
       this.facetParameters = [];
       // API language Update
       let queryArr = [];
@@ -270,7 +284,8 @@ export class AppComponent {
         }
       }
       for (const key in this.selectedFacets) {
-        if (this.selectedFacets.hasOwnProperty(key) && key != "lang_exact") {
+        // if (this.selectedFacets.hasOwnProperty(key) && key != "lang_exact") {
+        if (this.selectedFacets.hasOwnProperty(key)) {
           let value = this.selectedFacets[key];
           if (key == "qterm") {
             this.qterm = value;
@@ -280,10 +295,39 @@ export class AppComponent {
         }
       }
       //
-      this.facetParameters =
+      //update to load lang from url param on APR 05 2023
+
+      if (this.getParameterByName("lang_exact", document.location.search)) {
+        this.languageVal = this.getParameterByName(
+          "lang_exact",
+          document.location.search
+        );
+        this.facetParameters =
+          Object.keys(this.getQueryParams(document.location.search)).length > 0
+            ? this.getQueryParams(document.location.search)
+            : { lang_exact: this.languageVal };
+      } else {
+        let qpm = this.getQueryParams(document.location.search);
+        console.log(
+          Object.keys(this.getQueryParams(document.location.search)).length
+        );
+
+        if (
+          this.getParameterByName("countrycode_exact", document.location.search)
+        ) {
+          qpm["lang_exact"] = this.languageExact.split("=")[1];
+        }
+        this.facetParameters =
+          Object.keys(this.getQueryParams(document.location.search)).length > 0
+            ? qpm
+            : { lang_exact: this.languageExact.split("=")[1] };
+      }
+
+      /* this.facetParameters =
         Object.keys(this.getQueryParams(document.location.search)).length > 0
           ? this.getQueryParams(document.location.search)
-          : { lang_exact: this.languageVal };
+          : { lang_exact: this.languageVal }; */
+
       /* if(this.apiLanguage) { // check initially lang is set
 					this.keys = '&'+this.keys;
 					this.facetParameters = Object.keys(this.getQueryParams(document.location.search)).length>0? this.getQueryParams(document.location.search) : {'lang_exact':this.languageVal};
@@ -294,6 +338,23 @@ export class AppComponent {
 				} */
 
       //
+
+      this.inputParameters =
+        this.removeURLParameter(this.inputParameters, "apilang") +
+        "&" +
+        this.apiLanguage;
+      if (!queryArr.includes(this.languageExact)) {
+        this.inputParameters =
+          this.removeURLParameter(this.inputParameters, "lang_exact") +
+          "&" +
+          this.languageExact;
+      } else {
+        this.inputParameters = this.removeURLParameter(
+          this.inputParameters,
+          "lang_exact"
+        );
+      }
+
       this.url =
         this.host +
         "?" +
@@ -301,6 +362,7 @@ export class AppComponent {
         "&" +
         queryArr.join("&") +
         "&os=0";
+
       // this.apiLanguage = 'apilang=' + (this.locales[this.languageExact.split('=')[1]] === undefined ? 'en' : this.locales[this.languageExact.split('=')[1]]);
       // if (this.displayParameters.indexOf('lang_exact=') === -1) {
       // 	if (this.displayParameters == '') {
@@ -327,6 +389,19 @@ export class AppComponent {
           this.getParameterByName("srt", document.location.search);
       }
 
+      //check on page load srt is available in site url and insert into api if exist
+      if (
+        this.getParameterByName("countrycode_exact", document.location.search)
+      ) {
+        this.url =
+          this.url +
+          "&countrycode_exact=" +
+          this.getParameterByName(
+            "countrycode_exact",
+            document.location.search
+          );
+      }
+
       this.localeUrlParameter = this.localeUrl + this.apiLanguage;
 
       let locale = this.apiLanguage.split("=")[1];
@@ -347,6 +422,11 @@ export class AppComponent {
       this.sideBarArrow =
         locale == "ar" ? "fa fa-angle-right" : "fa fa-angle-left";
     }
+
+    console.log("facetParameters_init", this.facetParameters);
+    /* console.log("facets_init", this.facets);
+    console.log("i18n_init", this.i18n); */
+    console.log("apiLanguage_init", this.apiLanguage);
   }
 
   ngOnInit() {
@@ -662,7 +742,7 @@ export class AppComponent {
   }
   public updateParameter(parameter: any) {
     //console.log('on click ' + new Date);
-    console.log(parameter);
+    console.log("parameter", parameter);
 
     this.onLoad = true;
     this.loading = true;
@@ -748,8 +828,23 @@ export class AppComponent {
     //     this.url += "&" + queryArr1.join("&");
     // }
 
+    if (this.facetParameters.lang_exact && this.facetParameters.lang_exact[0]) {
+      this.languageExact = "lang_exact=" + this.facetParameters.lang_exact[0];
+    } else {
+      this.languageExact = "lang_exact=";
+      this.url = this.removeURLParameter(this.url, "lang_exact");
+      this.url = this.removeURLParameter(this.url, "apilang");
+      this.inputParameters = this.removeURLParameter(
+        this.inputParameters,
+        "lang_exact"
+      );
+      this.inputParameters = this.removeURLParameter(
+        this.inputParameters,
+        "apilang"
+      );
+    }
+    //console.log(this.inputParameters, "inputParameters");
     let len_exact_val = this.languageExact.split("=");
-    //console.log(len_exact_val[1])
     this.url =
       this.host +
       "?" +
@@ -757,8 +852,9 @@ export class AppComponent {
       "&" +
       queryArr1.join("&") +
       "&os=0";
+
     // API language Update
-    if (len_exact_val[1] == undefined || len_exact_val[1].length < 1) {
+    /* if (len_exact_val[1] == undefined || len_exact_val[1].length < 1) {
       this.url = this.removeURLParameter(this.url, "lang_exact");
       this.url = this.removeURLParameter(this.url, "apilang");
     } else if (len_exact_val[1]) {
@@ -767,7 +863,7 @@ export class AppComponent {
       this.url = this.removeURLParameter(this.url, "apilang");
       this.url =
         this.url + "&apilang=" + langVal + "&lang_exact=" + len_exact_val[1];
-    }
+    } */
     //
     window.history.pushState("", "", "?" + queryArr1.join("&"));
     this.inputParameters = this.removeURLParameter(
@@ -778,7 +874,7 @@ export class AppComponent {
     //this.apiLanguage = 'apilang=' + (this.locales[this.languageExact.split('=')[1]] === undefined ? this.locales[parameter['lang_exact']] : this.locales[this.languageExact.split('=')[1]]);
 
     if (this.locales[len_exact_val[1]] === undefined) {
-      this.apiLanguage = "apilang=en";
+      this.apiLanguage = "apilang=";
     } else {
       this.apiLanguage = "apilang=" + this.locales[len_exact_val[1]];
     }
@@ -821,11 +917,20 @@ export class AppComponent {
     }
 
     //console.log(locale, 'lnag')
-    //console.log('URL', this.url)
+    //debugger;
+    let apilang = this.getParameterByName("lang_exact", this.url);
+    if (apilang == null) {
+      this.localeUrlParameter = this.removeURLParameter(
+        this.localeUrlParameter,
+        "apilang"
+      );
+    }
+    //console.log(this.facetParameters);
+
     this.facetParameters =
       Object.keys(this.getQueryParams(document.location.search)).length > 0
         ? this.getQueryParams(document.location.search)
-        : { lang_exact: this.languageVal };
+        : { lang_exact: "" };
   }
   public updatedValues(value: any) {
     this.i18n = value.i18n;
@@ -990,14 +1095,15 @@ export class AppComponent {
       this.inputParameters,
       "lang_exact"
     );
-    this.url =
+    /* this.url =
       host +
       "?" +
       this.inputParameters +
       "&" +
       this.apiLanguage +
       "&" +
-      this.languageExact;
+      this.languageExact; */
+    this.url = host + "?" + this.inputParameters;
     this.localeUrlParameter = this.localeUrl + this.apiLanguage;
     let locale = this.apiLanguage.split("=")[1];
     this.filter = this.i18nFilter.hasOwnProperty(locale)
@@ -1013,7 +1119,8 @@ export class AppComponent {
     }
     this.facetParameters = [];
     // Api language Update
-    this.facetParameters = { lang_exact: this.languageVal };
+    //this.facetParameters = { lang_exact: this.languageVal };
+    this.facetParameters = {};
     if (this.intialLangset) {
       this.localeUrlParameter = this.localeUrl + this.apiLanguage;
     } else {
