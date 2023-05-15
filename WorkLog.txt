@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 1/7/2022
 Gayathri Mail => Subject: DEC Listing Code isssue - solved
 
@@ -36,28 +37,11 @@ adding countrycode_exact param in API
 News:
 Author URL: https://aemauthorstg65.worldbank.org/content/wb-home/en/news/news-landing/all.html?wcmmode=disabled
 File Path: https://aemauthorstg65.worldbank.org/crx/de/index.jsp#/etc/designs/wbrrdesign/custom_search_clientlibs/js/main.js
+=======
+Everything:
+Author URL: https://aemauthorstg65.worldbank.org/content/worldbankgroup/president/en/testlist.html?wcmmode=disabled
+File Path: https://aemauthorstg65.worldbank.org/crx/de/index.jsp#/etc/designs/wbrrdesign/components/custom_search_events
+>>>>>>> 80465076f06d6d0a7648b8fc27a8412495f2f37f
 jsp path: https://aemauthorstg65.worldbank.org/crx/de/index.jsp#/apps/wbrnews/components/content/custom_search/custom_search.jsp
 
-https://wwwstg.worldbank.org/wbg/aem/service/i18nservice.html?apilang=en&keys=Today,Past7Days,PastMonth,PastYear,RefineBy,TimeFrame,SpecificDateRange,StartDate,EndDate,SeeMore,SeeLess,SortBy,ShowingResults,Date,addtocalendar,Upcoming,Past,BestMatch,job_title,alphabetical,NoResultsMsgFuture,NoResultsMsgPast,displayconttype_exact,topic_exact,lang_exact,count_exact,countcode_exact,admreg_exact
-
-https://aemauthorstg65.worldbank.org/wbg/aem/service/i18nservice.html?apilang=en&keys=Today,Past7Days,PastMonth,PastYear,RefineBy,TimeFrame,SpecificDateRange,StartDate,EndDate,SeeMore,SeeLess,SortBy,ShowingResults,Date,addtocalendar,Upcoming,Past,BestMatch,job_title,alphabetical,NoResultsMsgFuture,NoResultsMsgPast,displayconttype_exact,topic_exact,lang_exact,count_exact,countcode_exact,admreg_exact
-https://aemauthorstg65.worldbank.org/wbg/aem/service/i18nservice.html?&keys=Today,Past7Days,PastMonth,PastYear,RefineBy,TimeFrame,SpecificDateRange,StartDate,EndDate,SeeMore,SeeLess,SortBy,ShowingResults,Date,addtocalendar,Upcoming,Past,BestMatch,job_title,alphabetical,NoResultsMsgFuture,NoResultsMsgPast,displayconttype_exact,topic_exact,lang_exact,count_exact,countcode_exact,admreg_exact
-	
-Events: 
-https://wwwstg.worldbank.org/en/events/all
-https://aemauthorstg65.worldbank.org/content/wb-home/en/news/events/events-landing/all.html?wcmmode=disabled
-
-Installation:
-npm cache clear --force
-Delete package.lock.json
-disable global protect
-npm install --legacy-peer-deps
-
-After installation it shows error in ember-cli -> just comment error line and it will work
-
-https://searchqa.worldbank.org/api/v2/events?fct=displayconttype_exact,lang_exact&format=json&rows=20&src=cq55&apilang=en&lang_exact=English&strdate=10-09-2017&enddate=10-16-2017&pastevents=on&srt=eventstartdate&order=desc
-https://searchqa.worldbank.org/api/v2/events?fct=displayconttype_exact,lang_exact&format=json&rows=20&src=cq55&&os=0&futureevents=on
-
-dates=20230216T080000Z/20230216T100000Z
-dates=20230216T200000Z/20230216T220000Z
 
